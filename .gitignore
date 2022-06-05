@@ -41,6 +41,12 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# Eclipse Gradle plugin generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
 
 ### Linux ###
 *~
@@ -191,3 +197,5 @@ fabric.properties
 
 ### Application Specific ###
 .idea/
+gradle/
+gradlew.bat
