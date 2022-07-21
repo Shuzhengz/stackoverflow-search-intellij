@@ -199,3 +199,4 @@ fabric.properties
 .idea/
 gradle/
 gradlew.bat
+.run/
