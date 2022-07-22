@@ -15,10 +15,15 @@ import org.jetbrains.annotations.PropertyKey;
 
 import java.util.Objects;
 
-public class StackoverflowSearchIntellij extends AnAction {
+// Currently following the tutorial from https://www.baeldung.com/intellij-new-custom-plugin
 
+public class StackoverflowSearchIntellij extends AnAction {
     String txtToSearch;
 
+    /**
+     * Performs the search action
+     * @param e Carries information on the invocation place
+     */
     @Override
     public void actionPerformed(AnActionEvent e) {
         Language lang = Objects.requireNonNull(e.getData(CommonDataKeys.PSI_FILE)).getLanguage();
@@ -34,13 +39,7 @@ public class StackoverflowSearchIntellij extends AnAction {
         } catch (Exception txtHandle) {
             System.out.println("Error handling text");
         }
-        BrowserUtil.browse("https://stackoverflow.com/search?q=" + txtToSearch);
-    }
 
-    @Override
-    public void update(AnActionEvent e) {
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        CaretModel caretModel = editor.getCaretModel();
-        e.getPresentation().setEnabledAndVisible(caretModel.getCurrentCaret().hasSelection());
+        BrowserUtil.browse("https://stackoverflow.com/search?q=" + txtToSearch);
     }
 }
