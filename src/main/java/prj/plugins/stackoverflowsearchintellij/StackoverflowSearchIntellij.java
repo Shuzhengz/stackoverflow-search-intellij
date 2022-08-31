@@ -31,9 +31,9 @@ public class StackoverflowSearchIntellij extends AnAction {
         String selectedText = null;
         String txtToSearch = null;
 
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        CaretModel model = editor.getCaretModel();
-        
+        // Gets the text and its caret model from the editor
+        CaretModel model = e.getRequiredData(CommonDataKeys.EDITOR).getCaretModel();
+
         try {
             selectedText = model.getCurrentCaret().getSelectedText();
         } catch (Exception getData) {
