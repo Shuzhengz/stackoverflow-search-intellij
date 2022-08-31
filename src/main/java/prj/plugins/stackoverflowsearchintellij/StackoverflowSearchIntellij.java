@@ -15,8 +15,11 @@ import org.jetbrains.annotations.PropertyKey;
 
 import java.util.Objects;
 
-// Currently following the tutorial from https://www.baeldung.com/intellij-new-custom-plugin
+// Took some code from https://www.baeldung.com/intellij-new-custom-plugin
 
+/**
+ * Searches selected text in IntelliJ on Stackoverflow
+ */
 public class StackoverflowSearchIntellij extends AnAction {
 
     /**
@@ -45,6 +48,7 @@ public class StackoverflowSearchIntellij extends AnAction {
             txtToSearch = selectedText.replace(' ', '+') + languageTag;
         } catch (Exception txtHandle) {
             System.out.println("Error handling text");
+            txtToSearch = "Sorry I didn't catch that";
         }
 
         BrowserUtil.browse("https://stackoverflow.com/search?q=" + txtToSearch);
