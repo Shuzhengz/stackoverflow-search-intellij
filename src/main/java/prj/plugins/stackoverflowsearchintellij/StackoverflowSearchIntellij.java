@@ -18,7 +18,6 @@ import java.util.Objects;
 // Currently following the tutorial from https://www.baeldung.com/intellij-new-custom-plugin
 
 public class StackoverflowSearchIntellij extends AnAction {
-    String txtToSearch;
 
     /**
      * Performs the search action
@@ -29,9 +28,17 @@ public class StackoverflowSearchIntellij extends AnAction {
         Language lang = Objects.requireNonNull(e.getData(CommonDataKeys.PSI_FILE)).getLanguage();
         String languageTag = "+[" + lang.getDisplayName().toLowerCase() + "]";
 
+        String selectedText = null;
+        String txtToSearch = null;
+
         Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
         CaretModel model = editor.getCaretModel();
-        String selectedText = model.getCurrentCaret().getSelectedText();
+        
+        try {
+            selectedText = model.getCurrentCaret().getSelectedText();
+        } catch (Exception getData) {
+            System.out.println("Error getting data from the editor");
+        }
 
         try {
             assert selectedText != null;
